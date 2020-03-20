@@ -15,7 +15,7 @@ RUN apt-get -y install git
 ##########################################################################################
 
 RUN git clone https://github.com/ahmedmoustafa/BioLab
-RUN sh /tmp/setup/BioLab/prerequisites.sh
+RUN sh /tmp/setup/BioLab/scripts/prerequisites.sh
 
 
 ##########################################################################################
