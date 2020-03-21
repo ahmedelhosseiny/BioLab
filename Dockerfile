@@ -443,7 +443,7 @@ sh ./autogen.sh && ./configure && make && make install
 
 
 # Pplacer
-#######
+#########
 RUN cd $SETUPDIR/ && \
 wget -t 0 https://github.com/matsen/pplacer/releases/download/v1.1.alpha19/pplacer-linux-v1.1.alpha19.zip && \
 unzip pplacer-linux-v1.1.alpha19.zip && \
@@ -453,6 +453,88 @@ mv pplacer /usr/local/bin/ && \
 mv rppr /usr/local/bin/ && \
 cd $SETUPDIR/pplacer-Linux-v1.1.alpha19/scripts/ && \
 python setup.py install
+
+##########################################################################################
+##########################################################################################
+
+# Gene Prediction
+#################
+#################
+
+RUN cd $SETUPDIR/ && \
+wget -t 0 https://github.com/hyattpd/Prodigal/releases/download/v2.6.3/prodigal.linux && \
+mv prodigal.linux /usr/local/bin/prodigal
+
+# DeepBGC
+#########
+Run pip install deepbgc && deepbgc download
+
+# Infernal
+##########
+RUN cd $SETUPDIR/ && \
+wget -t 0 http://eddylab.org/infernal/infernal-1.1.3.tar.gz && \
+tar zxvf infernal-1.1.3.tar.gz && \
+cd $SETUPDIR/infernal-1.1.3/ && \
+./configure && make && make install
+
+##########################################################################################
+##########################################################################################
+
+# Other
+#######
+#######
+
+# seqmagick (replacing the above installation)
+###########
+RUN pip3 install --no-cache-dir -U seqmagick
+
+##########################################################################################
+##########################################################################################
+
+# Finishing
+###########
+###########
+
+WORKDIR /root/
+RUN rm -fr $SETUPDIR
+ENTRYPOINT ["/bin/bash"]
+
+# Versions
+##########
+RUN python3.7 --version ; \
+R --version ; \
+blastn -version ; \
+diamond --version ; \
+muscle -version ; \
+mafft --version ; \
+tophat --version ; \
+hisat2 --version ; \
+bowtie2 --version ; \
+STAR --version ; \
+salmon --version ; \
+bbmap.sh --version ; \
+hts_Stats --version ; \
+treetime --version ; \
+# RUN FastTree
+# RUN phyml --version
+raxmlHPC -v ; \
+raxml-ng --version ; \
+pplacer --version ; \
+samtools  --version ; \
+bcftools  --version ; \
+bamtools --version ; \
+vcftools --version ; \
+bedtools --version ; \
+deeptools --version ; \
+bedops --version ; \
+spades.py --version ; \
+megahit --version ; \
+spades.py --version ; \
+deepbgc info ; \
+seqkit version ; \
+fastp --version ; \
+fqtrim -V ; \
+seqmagick --version
 
 ##########################################################################################
 ##########################################################################################
