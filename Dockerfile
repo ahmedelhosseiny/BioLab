@@ -81,7 +81,7 @@ R -e "devtools::install_github('rstudio/keras')" && R -e "library(keras) ; insta
 ############
 ############
 
-RUN mkdir -p $SETUPDIR/ncbi && $SETUPDIR/ncbi && \
+RUN mkdir -p $SETUPDIR/ncbi && cd $SETUPDIR/ncbi && \
 git clone https://github.com/ncbi/ncbi-vdb.git && cd $SETUPDIR/ncbi/ncbi-vdb && ./configure && make && make install && \
 git clone https://github.com/ncbi/ngs.git && cd $SETUPDIR/ncbi/ngs && ./configure && make && make install && \
 git clone https://github.com/ncbi/ngs-tools.git && cd $SETUPDIR/ncbi/ngs-tools && ./configure && make && make install && \
