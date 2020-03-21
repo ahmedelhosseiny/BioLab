@@ -389,3 +389,70 @@ make && mv meta-velvetg /usr/local/bin/
 
 ##########################################################################################
 ##########################################################################################
+
+# Phylogenetics
+###############
+###############
+
+# TreeTime
+##########
+RUN pip3 install phylo-treetime
+
+
+# FastTree
+##########
+RUN cd $SETUPDIR/ && \
+wget -t 0 http://www.microbesonline.org/fasttree/FastTree.c && \
+gcc -O3 -finline-functions -funroll-loops -Wall -o FastTree FastTree.c -lm && \
+gcc -DOPENMP -fopenmp -O3 -finline-functions -funroll-loops -Wall -o FastTreeMP FastTree.c -lm && \
+mv FastTree /usr/local/bin && \
+mv FastTreeMP /usr/local/bin 
+
+
+# RAxML
+#######
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/stamatak/standard-RAxML.git && \
+cd $SETUPDIR/standard-RAxML  && \
+rm -fr *.o && make -f Makefile.gcc && cp raxmlHPC /usr/local/bin/  && \
+rm -fr *.o && make -f Makefile.SSE3.gcc && cp raxmlHPC-SSE3 /usr/local/bin/  && \
+rm -fr *.o && make -f Makefile.PTHREADS.gcc && cp raxmlHPC-PTHREADS /usr/local/bin/  && \
+rm -fr *.o && make -f Makefile.SSE3.PTHREADS.gcc && cp raxmlHPC-PTHREADS-SSE3 /usr/local/bin/  && \
+rm -fr *.o && make -f Makefile.MPI.gcc && cp raxmlHPC-MPI /usr/local/bin/  && \
+rm -fr *.o && make -f Makefile.SSE3.MPI.gcc && cp raxmlHPC-MPI-SSE3 /usr/local/bin/
+
+
+# RAxML NG
+##########
+RUN cd $SETUPDIR/ && \
+git clone --recursive https://github.com/amkozlov/raxml-ng && \
+cd $SETUPDIR/raxml-ng && \
+mkdir build && \
+cd $SETUPDIR/raxml-ng/build && \
+cmake .. && make && mv ../bin/raxml-ng /usr/local/bin/  && \
+cmake -DSTATIC_BUILD=ON -DENABLE_RAXML_SIMD=OFF -DENABLE_PLLMOD_SIMD=OFF .. && make && mv ../bin/raxml-ng-static /usr/local/bin/  && \
+cmake -DUSE_MPI=ON .. && make && mv ../bin/raxml-ng-mpi /usr/local/bin/
+
+
+# PhyML
+#######
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/stephaneguindon/phyml.git && \
+cd $SETUPDIR/phyml/ && \
+sh ./autogen.sh && ./configure && make && make install
+
+
+# Pplacer
+#######
+RUN cd $SETUPDIR/ && \
+wget -t 0 https://github.com/matsen/pplacer/releases/download/v1.1.alpha19/pplacer-linux-v1.1.alpha19.zip && \
+unzip pplacer-linux-v1.1.alpha19.zip && \
+cd $SETUPDIR/pplacer-Linux-v1.1.alpha19/ && \
+mv guppy /usr/local/bin/ && \
+mv pplacer /usr/local/bin/ && \
+mv rppr /usr/local/bin/ && \
+cd $SETUPDIR/pplacer-Linux-v1.1.alpha19/scripts/ && \
+python setup.py install
+
+##########################################################################################
+##########################################################################################
