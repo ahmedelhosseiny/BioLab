@@ -27,4 +27,8 @@ The built image can be downloaded as follows:
 ### Note
 The size of the built image is about 7 GB.
 
+## Citation
+
+If you use BioLab in your work, please cite the following [![DOI](https://zenodo.org/badge/248756319.svg)](https://zenodo.org/badge/latestdoi/248756319)
+
 ---
