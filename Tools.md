@@ -1,4 +1,4 @@
-# Tools included in the bioinformatics container
+# Tools included in BioLab
 
 | Tool | Description |
 | ---- | ----------- |
