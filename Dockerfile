@@ -480,13 +480,25 @@ cd $SETUPDIR/infernal-1.1.3/ && \
 ##########################################################################################
 ##########################################################################################
 
-# Other
-#######
-#######
+# Misc
+######
+######
 
 # seqmagick (replacing the above installation)
 ###########
 RUN pip3 install --no-cache-dir -U seqmagick
+
+# Docker
+########
+RUN cd $SETUPDIR/ && \
+wget -t 0 https://get.docker.com/ -O docker.sh && \
+sh docker.sh
+
+# Miniconda
+###########
+RUN cd $SETUPDIR/ && \
+wget -t 0 https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+sh Miniconda3-latest-Linux-x86_64.sh -b -p /usr/local/miniconda3
 
 ##########################################################################################
 ##########################################################################################
@@ -534,7 +546,9 @@ deepbgc info ; \
 seqkit version ; \
 fastp --version ; \
 fqtrim -V ; \
-seqmagick --version
+seqmagick --version ; \
+docker --version ; \
+/usr/local/miniconda3/bin/conda --version
 
 ##########################################################################################
 ##########################################################################################
