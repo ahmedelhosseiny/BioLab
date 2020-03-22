@@ -23,4 +23,7 @@ The built image can be downloaded as follows:
 
 `sudo docker run -it biolab`
 
+### Note
+The size of the built image is about 7 GB.
+
 ---
