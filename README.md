@@ -8,7 +8,7 @@ The list of the installed tools and packages can be found [here](https://github.
 
 ### Option 1: Pulling from Docker Hub (Recommended)
 
-[Docker Hub](https://hub.docker.com/) automatically and elegantly [builds images](https://hub.docker.com/repository/docker/cairogenes/biolab) for changes to the GitHub repository.
+[Docker Hub](https://hub.docker.com/) automatically and elegantly [builds images](https://hub.docker.com/r/cairogenes/biolab) for changes to the GitHub repository.
 
 The built image can be downloaded as follows:
 
