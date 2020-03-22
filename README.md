@@ -15,9 +15,10 @@ The built image can be downloaded as follows:
 `sudo docker run -it cairogenes/biolab`
 
 ### Option 2: Building from `Dockerfile`
+
 `git clone https://github.com/ahmedmoustafa/BioLab.git`
 
-`cd BioLib/`
+`cd BioLab/`
 
 `sudo docker build -t biolab .`
 
