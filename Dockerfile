@@ -467,7 +467,7 @@ mv prodigal.linux /usr/local/bin/prodigal
 
 # DeepBGC
 #########
-Run pip install deepbgc && deepbgc download
+Run pip install deepbgc deepbgc[hmm] && deepbgc download
 
 # Infernal
 ##########
@@ -499,6 +499,14 @@ sh docker.sh
 RUN cd $SETUPDIR/ && \
 wget -t 0 https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
 sh Miniconda3-latest-Linux-x86_64.sh -b -p /usr/local/miniconda3
+
+# CD-HIT
+########
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/weizhongli/cdhit.git && \
+cd $SETUPDIR/cdhit && \
+make && \
+make install
 
 ##########################################################################################
 ##########################################################################################
@@ -548,7 +556,7 @@ fastp --version ; \
 fqtrim -V ; \
 seqmagick --version ; \
 docker --version ; \
-/usr/local/miniconda3/bin/conda --version
+/usr/local/miniconda3/bin/conda --version 
 
 ##########################################################################################
 ##########################################################################################
