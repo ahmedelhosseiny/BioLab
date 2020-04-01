@@ -1,6 +1,6 @@
 # BioLab
 
-`BioLab` is a [Docker](https://www.docker.com/) container for common bioinformatics tools.
+`BioLab` is a [Docker](https://www.docker.com/) Ubuntu container for common bioinformatics tools.
 
 The list of the installed tools and packages can be found [here](https://github.com/ahmedmoustafa/BioLab/blob/master/Tools.md)
 
@@ -25,7 +25,7 @@ The built image can be downloaded as follows:
 `sudo docker run -it biolab`
 
 ### Note
-The size of the built image is about 7 GB.
+The size of the built image is about 7.5 GB.
 
 ## Citation
 
