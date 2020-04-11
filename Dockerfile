@@ -510,6 +510,17 @@ make install
 
 RUN apt-get install -y dos2unix
 
+# Updating
+##########
+RUN apt-get update --fix-missing && apt-get -y upgrade
+
+# R's gganimate
+###############
+RUN apt-get -y install cargo ffmpeg libmagick++-dev libavfilter-dev
+RUN R -e "update.packages (ask = FALSE)" && \
+R -e "install.packages (c('gganimate', 'gifski', 'av', 'magick', 'ggvis', 'googleVis'))"
+
+
 ##########################################################################################
 ##########################################################################################
 
