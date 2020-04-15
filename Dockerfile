@@ -525,6 +525,21 @@ git clone https://github.com/rvalieris/parallel-fastq-dump.git && \
 cd $SETUPDIR/parallel-fastq-dump/ && \
 mv parallel-fastq-dump /usr/local/bin/
 
+# seqtk
+#######
+RUN git clone https://github.com/lh3/seqtk.git && \
+cd seqtk && \
+make && \
+mv seqtk /usr/local/bin/
+
+# Sambamba
+##########
+RUN cd $SETUPDIR/ && \
+wget -t 0 https://github.com/biod/sambamba/releases/download/v0.7.1/sambamba-0.7.1-linux-static.gz && \
+gzip -d sambamba-0.7.1-linux-static.gz && \
+mv sambamba-0.7.1-linux-static /usr/local/bin/sambamba
+
+
 ##########################################################################################
 ##########################################################################################
 

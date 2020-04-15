@@ -23,6 +23,7 @@
 | [FASTX](https://github.com/agordon/fastx_toolkit) | [Collection of command line tools for Short-Reads FASTA/FASTQ files preprocessing](http://hannonlab.cshl.edu/fastx_toolkit/) |
 | [Trimmomatic](https://github.com/timflutre/trimmomatic) | [Trimmomatic: a flexible trimmer for Illumina sequence data](https://www.ncbi.nlm.nih.gov/pubmed/24695404) |
 | [SeqKit](https://bioinf.shenwei.me/seqkit/) | [SeqKit: a cross-platform and ultrafast toolkit for FASTA/Q file manipulation](https://www.ncbi.nlm.nih.gov/pubmed/27706213) |
+| [seqtk](https://github.com/lh3/seqtk) | [Toolkit for processing sequences in FASTA/Q formats](https://github.com/lh3/seqtk) | 
 | [fastp](https://github.com/OpenGene/fastp) | [fastp: an ultra-fast all-in-one FASTQ preprocessor](https://www.ncbi.nlm.nih.gov/pubmed/30423086) |
 | [HTStream](https://github.com/ibest/HTStream.git) | [A toolset for high throughput sequence analysis using a streaming approach facilitated by Linux pipes](https://ibest.github.io/HTStream/) |
 | [fqtrim](https://ccb.jhu.edu/software/fqtrim/) | [trimming & filtering of next-gen reads](https://ccb.jhu.edu/software/fqtrim/)  |
