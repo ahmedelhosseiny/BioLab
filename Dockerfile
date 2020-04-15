@@ -508,18 +508,22 @@ cd $SETUPDIR/cdhit && \
 make && \
 make install
 
-RUN apt-get install -y dos2unix
-
 # Updating
 ##########
 RUN apt-get update --fix-missing && apt-get -y upgrade
 
 # R's gganimate
 ###############
-RUN apt-get -y install cargo ffmpeg libmagick++-dev libavfilter-dev
+RUN apt-get -y install cargo ffmpeg libmagick++-dev libavfilter-dev dos2unix
 RUN R -e "update.packages (ask = FALSE)" && \
 R -e "install.packages (c('gganimate', 'gifski', 'av', 'magick', 'ggvis', 'googleVis'))"
 
+# Parallel fastq-dump
+#####################
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/rvalieris/parallel-fastq-dump.git && \
+cd $SETUPDIR/parallel-fastq-dump/ && \
+mv parallel-fastq-dump /usr/local/bin/
 
 ##########################################################################################
 ##########################################################################################
@@ -527,10 +531,12 @@ R -e "install.packages (c('gganimate', 'gifski', 'av', 'magick', 'ggvis', 'googl
 # Finishing
 ###########
 ###########
-
 WORKDIR /root/
-RUN rm -fr $SETUPDIR
+RUN echo "export PATH=$PATH:/usr/local/ncbi/sra-tools/bin/:/usr/local/ncbi/ngs-tools/bin/:/usr/local/ncbi/ncbi-vdb/bin:/usr/local/miniconda3/bin" > init.sh
+RUN echo "/bin/bash" >> init.sh
+RUN chmod 755 init.sh
 ENTRYPOINT ["/bin/bash"]
+RUN rm -fr $SETUPDIR
 
 # Versions
 ##########
