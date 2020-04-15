@@ -533,7 +533,6 @@ mv parallel-fastq-dump /usr/local/bin/
 ###########
 WORKDIR /root/
 RUN echo "export PATH=$PATH:/usr/local/ncbi/sra-tools/bin/:/usr/local/ncbi/ngs-tools/bin/:/usr/local/ncbi/ncbi-vdb/bin:/usr/local/miniconda3/bin" > init.sh
-RUN echo "/bin/bash" >> init.sh
 RUN chmod 755 init.sh
 ENTRYPOINT ["/bin/bash"]
 RUN rm -fr $SETUPDIR
