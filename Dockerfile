@@ -329,9 +329,10 @@ make ; make install ; mv ./bin/* /usr/local/bin/
 # SAMBAMBA
 ##########
 RUN cd $SETUPDIR/ && \
-git clone --recursive https://github.com/biod/sambamba.git && \
-cd $SETUPDIR/sambamba && \
-make ; mv sambamba /usr/local/bin/
+wget -t 0 https://github.com/biod/sambamba/releases/download/v0.7.1/sambamba-0.7.1-linux-static.gz && \
+gzip -d sambamba-0.7.1-linux-static.gz && \
+mv sambamba-0.7.1-linux-static /usr/local/bin/sambamba
+
 
 ##########################################################################################
 ##########################################################################################
