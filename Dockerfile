@@ -194,3 +194,97 @@ RUN cd $SETUPDIR/ && wget -t 0 http://github.com/bbuchfink/diamond/releases/down
 ##########################################################################################
 ##########################################################################################
 
+# Alignment Tools
+#################
+#################
+
+# JAligner
+##########
+RUN apt-get -y install jaligner
+
+# MUSCLE
+########
+RUN cd $SETUPDIR/ && \
+wget -t 0 https://www.drive5.com/muscle/downloads3.8.31/muscle3.8.31_src.tar.gz && \
+tar zxvf muscle3.8.31_src.tar.gz && \
+cd $SETUPDIR/muscle3.8.31/src && \
+make && mv muscle /usr/local/bin/
+
+# MAFFT
+#######
+RUN cd $SETUPDIR/ && \
+wget -t 0 https://mafft.cbrc.jp/alignment/software/mafft-7.471-with-extensions-src.tgz && \
+tar zxvf mafft-7.471-with-extensions-src.tgz && \
+cd $SETUPDIR/mafft-7.471-with-extensions/core && \
+make clean && make && make install && \
+cd $SETUPDIR/mafft-7.471-with-extensions/extensions/ && \
+make clean && make && make install
+
+# BWA
+#####
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/lh3/bwa.git && \
+cd $SETUPDIR/bwa && \
+make && mv bwa /usr/local/bin/
+
+# TopHat
+########
+# RUN cd $SETUPDIR/ && \
+# wget -t 0 https://ccb.jhu.edu/software/tophat/downloads/tophat-2.1.1.Linux_x86_64.tar.gz && \
+# tar zxvf tophat-2.1.1.Linux_x86_64.tar.gz && \
+# cd $SETUPDIR/tophat-2.1.1.Linux_x86_64 && \
+# mv tophat* /usr/local/bin/
+
+# HISAT2
+########
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/infphilo/hisat2.git && \
+cd $SETUPDIR/hisat2 && \
+make && mv hisat2-* /usr/local/bin/  &&  mv hisat2 /usr/local/bin/
+
+
+# Bowtie2
+########
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/BenLangmead/bowtie2.git && \
+cd $SETUPDIR/bowtie2/ && \
+make && make install
+
+
+# STAR
+######
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/alexdobin/STAR.git && \
+cd $SETUPDIR/STAR/source && \
+make STAR && mv STAR /usr/local/bin/
+
+
+# Salmon
+########
+RUN cd $SETUPDIR/ && \
+wget -t 0 https://github.com/COMBINE-lab/salmon/releases/download/v1.3.0/salmon-1.3.0_linux_x86_64.tar.gz && \
+tar zxvf salmon-1.3.0_linux_x86_64.tar.gz && \
+mv $SETUPDIR/salmon-latest_linux_x86_64/bin/* /usr/local/bin/ && \
+mv $SETUPDIR/salmon-latest_linux_x86_64/lib/* /usr/local/lib/
+
+# kallisto
+##########
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/pachterlab/kallisto.git && \
+cd $SETUPDIR/kallisto/ext/htslib && \
+autoheader && autoconf && \
+cd $SETUPDIR/kallisto/ && \
+mkdir build && \
+cd $SETUPDIR/kallisto/build && \
+cmake .. && make && make install && \
+R -e "BiocManager::install('pachterlab/sleuth', ask = FALSE, update = TRUE)"
+
+# BBMap
+#######
+RUN cd $SETUPDIR/ && \
+wget -t 0 https://downloads.sourceforge.net/project/bbmap/BBMap_38.86.tar.gz && \
+tar zxvf BBMap_38.86.tar.gz && \
+mv bbmap/* /usr/local/bin/
+
+##########################################################################################
+##########################################################################################
