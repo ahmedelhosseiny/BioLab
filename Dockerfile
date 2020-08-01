@@ -363,3 +363,57 @@ chmod +x /usr/local/bin/sambamba
 
 ##########################################################################################
 ##########################################################################################
+
+# Assemblers
+############
+############
+
+# SPAdes
+########
+RUN cd $SETUPDIR/ && \
+wget -t 0 http://cab.spbu.ru/files/release3.14.1/SPAdes-3.14.1-Linux.tar.gz  && \
+tar zxvf SPAdes-3.14.1-Linux.tar.gz  && \
+mv SPAdes-3.14.1-Linux/bin/* /usr/local/bin/  && \
+mv SPAdes-3.14.1-Linux/share/* /usr/local/share/
+
+
+# ABySS
+#######
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/sparsehash/sparsehash.git && \
+cd $SETUPDIR/sparsehash && \
+./autogen.sh && ./configure && make && make install && \
+cd $SETUPDIR/ && \
+git clone https://github.com/bcgsc/abyss.git && \
+cd $SETUPDIR/abyss && \
+./autogen.sh && ./configure && make && make install
+
+
+# Velvet
+########
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/dzerbino/velvet.git && \
+cd $SETUPDIR/velvet/ && \
+make && mv velvet* /usr/local/bin/
+
+
+# MEGAHIT
+#########
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/voutcn/megahit.git && \
+cd $SETUPDIR/megahit && \
+git submodule update --init && \
+mkdir build && \
+cd $SETUPDIR/megahit/build && \
+cmake .. -DCMAKE_BUILD_TYPE=Release && make -j4 && make simple_test  && make install
+
+
+# MetaVelvet
+############
+RUN cd $SETUPDIR/ && \
+git clone git://github.com/hacchy/MetaVelvet.git && \
+cd $SETUPDIR/MetaVelvet && \
+make && mv meta-velvetg /usr/local/bin/
+
+##########################################################################################
+##########################################################################################
