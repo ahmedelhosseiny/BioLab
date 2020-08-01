@@ -288,3 +288,78 @@ mv bbmap/* /usr/local/bin/
 
 ##########################################################################################
 ##########################################################################################
+
+# BAM Processing
+################
+################
+
+# HTSlib
+########
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/samtools/htslib.git && \
+cd $SETUPDIR/htslib && \
+autoheader ; autoconf ; ./configure ; make ; make install
+
+# Samtools
+##########
+RUN cd $SETUPDIR/ && \
+git clone git://github.com/samtools/samtools.git && \
+cd $SETUPDIR/samtools && \
+autoheader ; autoconf ; ./configure ; make ; make install
+
+# Bcftools
+##########
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/samtools/bcftools.git && \
+cd $SETUPDIR/bcftools && \
+autoheader ; autoconf ; ./configure ; make ; make install
+
+
+# Bamtools
+##########
+RUN cd $SETUPDIR/ && \
+git clone git://github.com/pezmaster31/bamtools.git && \
+cd $SETUPDIR/bamtools && \
+mkdir build && \
+cd $SETUPDIR/bamtools/build && \
+cmake .. ; make ; make install
+
+# VCFtools
+##########
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/vcftools/vcftools.git && \
+cd $SETUPDIR/vcftools && \
+./autogen.sh ; ./configure ; make ; make install
+
+# Bedtools
+##########
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/arq5x/bedtools2.git && \
+cd $SETUPDIR/bedtools2 && \
+make ; make install
+
+# deepTools
+###########
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/deeptools/deepTools && \
+cd $SETUPDIR/deepTools && \
+python setup.py install
+
+# BEDOPS
+########
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/bedops/bedops.git && \
+cd $SETUPDIR/bedops && \
+make ; make install ; mv ./bin/* /usr/local/bin/
+
+# SAMBAMBA
+##########
+RUN cd $SETUPDIR/ && \
+wget -t 0 https://github.com/biod/sambamba/releases/download/v0.7.1/sambamba-0.7.1-linux-static.gz && \
+gzip -d sambamba-0.7.1-linux-static.gz && \
+mv sambamba-0.7.1-linux-static /usr/local/bin/sambamba && \
+chmod +x /usr/local/bin/sambamba
+
+
+##########################################################################################
+##########################################################################################
