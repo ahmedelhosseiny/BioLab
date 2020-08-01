@@ -484,3 +484,63 @@ python setup.py install
 
 ##########################################################################################
 ##########################################################################################
+
+# Gene Prediction
+#################
+#################
+
+RUN cd $SETUPDIR/ && \
+wget -t 0 https://github.com/hyattpd/Prodigal/releases/download/v2.6.3/prodigal.linux && \
+mv prodigal.linux /usr/local/bin/prodigal && \
+chmod +x /usr/local/bin/prodigal
+
+# Infernal
+##########
+RUN cd $SETUPDIR/ && \
+wget -t 0 http://eddylab.org/infernal/infernal-1.1.3.tar.gz && \
+tar zxvf infernal-1.1.3.tar.gz && \
+cd $SETUPDIR/infernal-1.1.3/ && \
+./configure && make && make install
+
+##########################################################################################
+##########################################################################################
+
+# Misc
+######
+######
+
+# Docker
+########
+RUN cd $SETUPDIR/ && \
+wget -t 0 https://get.docker.com/ -O docker.sh && \
+sh docker.sh
+
+# Miniconda
+###########
+RUN cd $SETUPDIR/ && \
+wget -t 0 https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+sh Miniconda3-latest-Linux-x86_64.sh -b -p /usr/local/miniconda3
+
+# CD-HIT
+########
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/weizhongli/cdhit.git && \
+cd $SETUPDIR/cdhit && \
+make && \
+make install
+
+# Parallel fastq-dump
+#####################
+RUN cd $SETUPDIR/ && \
+git clone https://github.com/rvalieris/parallel-fastq-dump.git && \
+cd $SETUPDIR/parallel-fastq-dump/ && \
+mv parallel-fastq-dump /usr/local/bin/
+
+# R's gganimate
+###############
+RUN R -e "update.packages (ask = FALSE)" && \
+R -e "install.packages (c('gganimate', 'gifski', 'av', 'magick', 'ggvis', 'googleVis'))"
+
+
+##########################################################################################
+##########################################################################################
